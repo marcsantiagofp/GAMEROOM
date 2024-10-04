@@ -82,7 +82,7 @@ def piedra_papel_tijeras():
 def ahorcado():
     try:
         with open("palabras.txt", "r", encoding="utf-8") as fichero:
-            palabras = fichero.read().splitlines() 
+            palabras = fichero.read().splitlines()
     except FileNotFoundError:
         print("No se encontró 'palabras.txt'.")
         return
