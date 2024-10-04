@@ -97,10 +97,20 @@ def ahorcado():
 
     while intentos_maximos > 0 and '_' in tablero:
         print(" ".join(tablero))
-        letra = input("Introduce una letra: ").lower()
+        entrada = input("Introduce una letra o la palabra completa: ").lower()  # Cambiado
 
-        if len(letra) != 1 or not letra.isalpha():
-            print("Introduce solo una letra o una letra correcta.")
+        if len(entrada) == 1 and entrada.isalpha():  # Validación de letra
+            letra = entrada  # Asignar la letra si es válida
+        elif entrada.isalpha() and len(entrada) == letras_palabra:  # Validación de palabra completa
+            if entrada == palabra:  # Si la palabra es correcta
+                tablero = list(palabra)  # Mostrar la palabra completa
+                break  # Salir del bucle
+            else:
+                intentos_maximos -= 1  # Reducir intentos si la palabra es incorrecta
+                print(f"Incorrecto. Te quedan {intentos_maximos} intentos.")
+                continue  # Volver al inicio del bucle
+        else:
+            print("Introduce solo una letra o la palabra completa.")
             continue
 
         if letra in palabra:
